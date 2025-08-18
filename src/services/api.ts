@@ -3,7 +3,7 @@ import { LoginRequest, LoginResponse, SendAlarmRequest, SendAlarmResponse, ApiEr
 import { auth } from '../utils/auth';
 
 // API 기본 URL 설정 (환경에 따라 변경)
-const BASE_URL = 'http://localhost:8080' //https://api.boombim.p-e.kr'; // 또는 개발환경: 'http://localhost:8080'
+const BASE_URL = 'https://api.boombim.p-e.kr' //http://api.boombim.p-e.kr'; // 또는 개발환경: 'http://localhost:8080'
 
 // axios 인스턴스 생성
 const apiClient = axios.create({
