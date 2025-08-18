@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { api } from '../services/api';
 import { auth } from '../utils/auth';
-import { SendAlarmRequest, SendAlarmResponse, AlarmType } from '../types';
+import { SendAlarmRequest, SendAlarmResponse} from '../types';
 
 const AlarmForm: React.FC = () => {
     const [formData, setFormData] = useState<SendAlarmRequest>({
