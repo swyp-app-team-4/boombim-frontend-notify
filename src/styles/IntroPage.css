@@ -1,0 +1,90 @@
+.intro-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: "Noto Sans KR", "Segoe UI", sans-serif;
+    background: #111;
+    color: #eee;
+}
+
+.intro-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.intro-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.intro-card {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.intro-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: #ffcc66;
+}
+
+.intro-card p {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.intro-card ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.intro-card li {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.intro-images {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.intro-images.two img {
+    flex: 1;               /* 부모 영역 꽉 채움 */
+    height: 880px;         /* 세로 길이 늘림 (원하는 값으로 조절) */
+    object-fit: cover;     /* 비율 유지하면서 꽉 채우기 */
+    border-radius: 10px;
+}
+
+.intro-images.three img {
+
+    height: 780px;         /* 세로 길이 늘림 */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.intro-footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+/* ===== 모바일 반응형 ===== */
+@media (max-width: 768px) {
+    .intro-images {
+        flex-direction: column; /* 세로로 배치 */
+    }
+
+    .intro-images.two img,
+    .intro-images.three img {
+        width: 100%;      /* 화면 가로 꽉 채움 */
+        height: auto;     /* 세로는 자동 비율 */
+    }
+}
