@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import AlarmForm from './components/AlarmForm';
+import IntroPage from './components/IntroPage';
 import { auth } from './utils/auth';
 import './styles/index.css';
 
@@ -9,7 +11,6 @@ const App: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        // 초기 로드 시 인증 상태 확인
         const checkAuthStatus = () => {
             const authenticated = auth.isAuthenticated();
             setIsAuthenticated(authenticated);
@@ -23,7 +24,6 @@ const App: React.FC = () => {
         setIsAuthenticated(true);
     };
 
-    // 로딩 중일 때 표시할 스피너
     if (isLoading) {
         return (
             <div className="app">
@@ -41,13 +41,42 @@ const App: React.FC = () => {
     }
 
     return (
-        <div className="app">
-            {isAuthenticated ? (
-                <AlarmForm />
-            ) : (
-                <LoginForm onLoginSuccess={handleLoginSuccess} />
-            )}
-        </div>
+        <Router>
+            <Routes>
+                {/* 소개 페이지 - 누구나 접근 가능 */}
+                <Route path="/intro" element={<IntroPage />} />
+
+                {/* 관리자 로그인 페이지 */}
+                <Route
+                    path="/admin"
+                    element={
+                        isAuthenticated ? (
+                            <Navigate to="/admin/dashboard" replace />
+                        ) : (
+                            <LoginForm onLoginSuccess={handleLoginSuccess} />
+                        )
+                    }
+                />
+
+                {/* 관리자 대시보드 */}
+                <Route
+                    path="/admin/dashboard"
+                    element={
+                        isAuthenticated ? (
+                            <AlarmForm />
+                        ) : (
+                            <Navigate to="/admin" replace />
+                        )
+                    }
+                />
+
+                {/* 기본 경로는 소개 페이지로 리다이렉트 */}
+                <Route path="/" element={<Navigate to="/intro" replace />} />
+
+                {/* 404 처리 */}
+                <Route path="*" element={<Navigate to="/intro" replace />} />
+            </Routes>
+        </Router>
     );
 };
 
